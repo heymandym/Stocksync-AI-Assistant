@@ -1,0 +1,7 @@
+pandas>=2.2
+openpyxl>=3.1
+numpy>=1.26
+# Optional: only needed for --llm (AI summary)
+anthropic>=0.40
+# Development
+pytest>=8

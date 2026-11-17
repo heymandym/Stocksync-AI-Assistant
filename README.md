@@ -108,3 +108,40 @@ The demonstration will include cases covering:
 ## Intended Outcome
 
 Demonstrate how business analysis, reliable calculations, and AI-generated communication can work together to support inventory reconciliation. Efficiency and accuracy improvements will be measured during testing rather than claimed in advance.
+
+## Quick Start
+
+Requires Python 3.11+.
+
+```bash
+pip install -r requirements.txt
+
+# Build the synthetic demo workbook (36 countries, 72 partners, 3 months, plus edge cases)
+python -c "from stocksync.synthetic import build_sample_workbook; build_sample_workbook('examples/sample_input.xlsx')"
+
+# Run the workflow; writes results, summary and drafts to outputs/
+python -m stocksync run --input examples/sample_input.xlsx --out outputs --threshold 0.95
+
+# Optional: add an AI narrative summary (needs ANTHROPIC_API_KEY; receives computed facts only)
+python -m stocksync run --input examples/sample_input.xlsx --out outputs --llm
+
+pytest
+```
+
+Outputs:
+
+- `reconciliation_results.xlsx`: sheets **Results**, **Product Summary** (net and gross differences shown side by side), and **Validation Issues**.
+- `summary.md`: deterministic summary, plus an AI section when `--llm` is used.
+- `follow_up_drafts.md`: one draft per account manager, marked as unsent. Lines without an account manager route to `UNASSIGNED`.
+
+### Code layout
+
+| Module | Responsibility |
+|---|---|
+| `stocksync/loader.py` | Reads the Inventory, Countries and Partner Managers sheets |
+| `stocksync/validation.py` | Row-level checks; error rows are excluded from calculation |
+| `stocksync/reconcile.py` | Fixed accuracy rules and status flags (no AI) |
+| `stocksync/summary.py` | Deterministic summary; optional AI summary from computed facts only |
+| `stocksync/messages.py` | Unsent follow-up drafts |
+| `stocksync/pipeline.py` | End-to-end run and output writing |
+| `stocksync/synthetic.py` | Builds the fictional demonstration workbook |
