@@ -1,15 +1,15 @@
-# StockSync AI
+# StockSync AI Assistant
 ### Inventory Reconciliation Assistant
 
 An AI-assisted workflow for monitoring inventory discrepancies and preparing partner follow-up messages for a fictional large European e-commerce company.
 
-> **Project status:** Design stage. All demonstration data will be synthetic. This repository will not contain company data, internal systems, or confidential materials.
+> **Project status:** Design stage. All demonstration data will be synthetic. This repository will not contain any company data, internal systems, or confidential materials.
 
 ## Business Problem
 
 Operations teams need to compare inventory reported by partners with expected inventory in their systems. Manually consolidating reports, checking discrepancies, and preparing messages for account managers takes time and can lead to inconsistent follow-up.
 
-StockSync AI aims to support this workflow across **36 European countries**, including Germany, France, Italy, the Netherlands, and Belgium.
+StockSync AI Assistant aims to support this workflow across **36 European countries**, including Germany, France, Italy, the Netherlands, and Belgium.
 
 ## Planned Workflow
 
