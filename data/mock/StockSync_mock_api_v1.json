@@ -1,9 +1,7 @@
 {
   "metadata": {
     "dataset": "StockSync synthetic demo",
-    "schema_version": "1.0",
-    "currency": "none",
-    "note": "All entities and records are fictional. reporting_date is sale date; submitting_date is submission date."
+    "schema_version": "1.0"
   },
   "sales": [
     {
@@ -57,8 +55,7 @@
       "submitting_date": "2026-11-21",
       "quantity": 4,
       "status": "ACCEPTED",
-      "supersedes_st_line_id": "ST-002",
-      "note": "Duplicate accepted submission: deduplicate by partner/product/serial/PO/sale date"
+      "supersedes_st_line_id": "ST-002"
     }
   ],
   "inventory_movements": [
@@ -103,11 +100,5 @@
       "actual_quantity": 86,
       "variance": 0
     }
-  ],
-  "rules": [
-    "Only accepted distinct ST reduces theoretical stock; apply by submitting date for system as-of snapshot in this demo.",
-    "A rejected ST does not reduce theoretical stock.",
-    "Duplicate ST-004 is ignored.",
-    "Inventory snapshots are independently reported partner quantities."
   ]
 }
