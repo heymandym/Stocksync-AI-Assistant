@@ -88,7 +88,7 @@ Clone this repository and run with Python 3; no packages, credentials or Fabric 
 
 ```bash
 git clone https://github.com/heymandym/Stocksync-AI-Assistant-2.git
-cd Stocksync-AI-Assistant
+cd Stocksync-AI-Assistant-2
 python scripts/reconcile_demo.py
 python scripts/reconcile_demo.py data/mock/StockSync_mock_api_v1.json
 ```
