@@ -44,16 +44,21 @@ def main():
     data = json.loads(Path(args.input).read_text(encoding="utf-8"))
     results = reconcile(data)
     expected = {row["as_of_date"]: row for row in data.get("expected_demo_results", [])}
+    checked = 0
     for row in results:
         reference = expected.get(row["as_of_date"])
-        if reference:
+        if reference is not None:
+            checked += 1
             for field in ("theoretical_quantity", "actual_quantity", "variance"):
                 assert row[field] == reference[field], f"{row['as_of_date']}: {field} mismatch"
         accuracy = "review" if row["accuracy"] is None else f"{row['accuracy']:.1%}"
         print(f"{row['as_of_date']} {row['partner_id']} {row['product_id']}: "
               f"theoretical={row['theoretical_quantity']} actual={row['actual_quantity']} "
               f"variance={row['variance']} accuracy={accuracy} {row['status']}")
-    print(f"PASS: {len(results)} snapshots checked against the fixture")
+    if checked == len(results) and checked > 0:
+        print(f"PASS: {checked} snapshots checked against the fixture")
+    else:
+        print(f"Checked {checked} of {len(results)} snapshots against expected results; no full PASS")
 
 
 if __name__ == "__main__":
