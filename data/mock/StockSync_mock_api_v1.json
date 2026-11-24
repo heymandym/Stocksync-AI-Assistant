@@ -1,0 +1,113 @@
+{
+  "metadata": {
+    "dataset": "StockSync synthetic demo",
+    "schema_version": "1.0",
+    "currency": "none",
+    "note": "All entities and records are fictional. reporting_date is sale date; submitting_date is submission date."
+  },
+  "sales": [
+    {
+      "st_line_id": "ST-001",
+      "batch_id": "B-1001",
+      "partner_id": "P001",
+      "product_id": "PROD-A",
+      "serial_number": "SN-DE-001",
+      "contract_po": "PO-001",
+      "reporting_date": "2026-11-20",
+      "submitting_date": "2026-11-20",
+      "quantity": 10,
+      "status": "ACCEPTED",
+      "supersedes_st_line_id": null
+    },
+    {
+      "st_line_id": "ST-002",
+      "batch_id": "B-1002",
+      "partner_id": "P001",
+      "product_id": "PROD-A",
+      "serial_number": "SN-DE-002",
+      "contract_po": "PO-001",
+      "reporting_date": "2026-11-20",
+      "submitting_date": "2026-11-20",
+      "quantity": 4,
+      "status": "REJECTED",
+      "error_code": "INVALID_FORMAT",
+      "supersedes_st_line_id": null
+    },
+    {
+      "st_line_id": "ST-003",
+      "batch_id": "B-1004",
+      "partner_id": "P001",
+      "product_id": "PROD-A",
+      "serial_number": "SN-DE-002",
+      "contract_po": "PO-001",
+      "reporting_date": "2026-11-20",
+      "submitting_date": "2026-11-21",
+      "quantity": 4,
+      "status": "ACCEPTED",
+      "supersedes_st_line_id": "ST-002"
+    },
+    {
+      "st_line_id": "ST-004",
+      "batch_id": "B-1005",
+      "partner_id": "P001",
+      "product_id": "PROD-A",
+      "serial_number": "SN-DE-002",
+      "contract_po": "PO-001",
+      "reporting_date": "2026-11-20",
+      "submitting_date": "2026-11-21",
+      "quantity": 4,
+      "status": "ACCEPTED",
+      "supersedes_st_line_id": "ST-002",
+      "note": "Duplicate accepted submission: deduplicate by partner/product/serial/PO/sale date"
+    }
+  ],
+  "inventory_movements": [
+    {
+      "movement_id": "M-001",
+      "partner_id": "P001",
+      "product_id": "PROD-A",
+      "movement_date": "2026-11-19",
+      "movement_type": "OPENING",
+      "quantity_signed": 100,
+      "source_reference": "ERP-OPEN-001"
+    }
+  ],
+  "partner_inventory": [
+    {
+      "snapshot_id": "INV-001",
+      "partner_id": "P001",
+      "product_id": "PROD-A",
+      "as_of_date": "2026-11-20",
+      "actual_quantity": 86,
+      "submitting_date": "2026-11-20"
+    },
+    {
+      "snapshot_id": "INV-002",
+      "partner_id": "P001",
+      "product_id": "PROD-A",
+      "as_of_date": "2026-11-21",
+      "actual_quantity": 86,
+      "submitting_date": "2026-11-21"
+    }
+  ],
+  "expected_demo_results": [
+    {
+      "as_of_date": "2026-11-20",
+      "theoretical_quantity": 90,
+      "actual_quantity": 86,
+      "variance": 4
+    },
+    {
+      "as_of_date": "2026-11-21",
+      "theoretical_quantity": 86,
+      "actual_quantity": 86,
+      "variance": 0
+    }
+  ],
+  "rules": [
+    "Only accepted distinct ST reduces theoretical stock; apply by submitting date for system as-of snapshot in this demo.",
+    "A rejected ST does not reduce theoretical stock.",
+    "Duplicate ST-004 is ignored.",
+    "Inventory snapshots are independently reported partner quantities."
+  ]
+}
