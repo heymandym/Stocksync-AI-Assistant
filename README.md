@@ -87,7 +87,7 @@ If theoretical quantity is zero or negative, the checker marks the row for revie
 Clone this repository and run with Python 3; no packages, credentials or Fabric account are needed for the local check:
 
 ```bash
-git clone https://github.com/heymandym/Stocksync-AI-Assistant.git
+git clone https://github.com/heymandym/Stocksync-AI-Assistant-2.git
 cd Stocksync-AI-Assistant
 python scripts/reconcile_demo.py
 python scripts/reconcile_demo.py data/mock/StockSync_mock_api_v1.json
