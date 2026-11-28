@@ -29,17 +29,8 @@ A manager can spend much of a morning consolidating partner reports, sales and s
 The reported stock of 70 is a partner snapshot; the 16-unit variance alone does not establish whether sales were missing, stock was late, or another event occurred.
 
 ## How this project works
+<img width="1920" height="1080" alt="Data Source" src="https://github.com/user-attachments/assets/c331722c-2cec-4b3a-b648-95896d91e8d0" />
 
-```mermaid
-flowchart TD
-    A["HTTP endpoint: synthetic ERP feed"] --> B["Fabric pipeline: Copy data"]
-    B --> C["Lakehouse Files and Bronze"]
-    C --> D["Silver: validate accepted ST and deduplicate"]
-    D --> E["Gold: theoretical vs reported stock"]
-    E --> F{"Accuracy below 90%?"}
-    F -->|Yes| G["Analyst checks exception and AI-assisted draft"]
-    F -->|No| H["Record result"]
-    G --> I["Manager notification after approval"]
 ```
 
 1. **Schedule and ingest**. The Fabric pipeline has an active daily schedule set for 08:00 (Central European time). Its Copy data activity retrieves a public synthetic JSON file over HTTP as a stand-in for an internal ERP API feed and saves it to the `LH_Reconciliation` Lakehouse. On successful completion, the pipeline triggers a notebook for processing. A manual pipeline run succeeded.
