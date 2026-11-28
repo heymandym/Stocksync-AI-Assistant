@@ -12,7 +12,7 @@ I built this project to recreate a real-world business scenario which I encounte
 | --- | --- |
 | What is compared? | Theoretical stock from opening inventory and accepted sales versus the partner's reported stock. |
 | What triggers review? | Reconciliation accuracy below **90%**. |
-| What has run in Fabric? | HTTP data → Lakehouse Files → PySpark notebook → Bronze, Silver and Gold Delta tables. |
+| What has run in Fabric? | ERP data → Lakehouse Files → PySpark notebook → Bronze, Silver and Gold Delta tables. |
 | What does AI do? | Drafts manager-facing wording from verified facts; it does not calculate quantities or decide the threshold. |
 | What can I reproduce here? | The synthetic input and a dependency-free Python checker for the three daily snapshots. |
 
@@ -29,9 +29,7 @@ A manager can spend much of a morning consolidating partner reports, sales and s
 The reported stock of 70 is a partner snapshot; the 16-unit variance alone does not establish whether sales were missing, stock was late, or another event occurred.
 
 ## How this project works
-
-    <img width="1920" height="1080" alt="Data Source" src="https://github.com/user-attachments/assets/afb89953-4ad6-4208-a003-a953cd1ccede" />
-
+<img width="1920" height="816" alt="Data Source" src="https://github.com/user-attachments/assets/54595167-005a-4d30-9e35-729734fc8507" />
 
 
 1. **Schedule and ingest**. The Fabric pipeline has an active daily schedule set for 08:00 (Central European time). Its Copy data activity retrieves a public synthetic JSON file over HTTP as a stand-in for an internal ERP API feed and saves it to the `LH_Reconciliation` Lakehouse. On successful completion, the pipeline triggers a notebook for processing. A manual pipeline run succeeded.
