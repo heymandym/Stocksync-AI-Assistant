@@ -30,7 +30,8 @@ The reported stock of 70 is a partner snapshot; the 16-unit variance alone does 
 
 ## How this project works
 
-    <img width="1920" height="1080" alt="Data Source" src="https://github.com/user-attachments/assets/f1d0b55a-5e18-4b4b-9334-9e199ecb4333" />
+    <img width="1920" height="1080" alt="Data Source" src="https://github.com/user-attachments/assets/afb89953-4ad6-4208-a003-a953cd1ccede" />
+
 
 
 1. **Schedule and ingest**. The Fabric pipeline has an active daily schedule set for 08:00 (Central European time). Its Copy data activity retrieves a public synthetic JSON file over HTTP as a stand-in for an internal ERP API feed and saves it to the `LH_Reconciliation` Lakehouse. On successful completion, the pipeline triggers a notebook for processing. A manual pipeline run succeeded.
